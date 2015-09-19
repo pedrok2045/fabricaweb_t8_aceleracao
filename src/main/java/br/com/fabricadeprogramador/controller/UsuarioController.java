@@ -32,8 +32,21 @@ public class UsuarioController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+		//super.doPost(req, resp);
+		UsuarioDAO uDAO = new UsuarioDAO();
+		Usuario usuario = new Usuario();
+		String nome = req.getParameter("nome");
+		usuario.setNome(nome);
+		String login = req.getParameter("login");
+		usuario.setLogin(login);
+		String senha = req.getParameter("senha");
+		usuario.setSenha(senha);
+		
+		uDAO.salvar(usuario);
+		
+		resp.getWriter().print("<h2><b>sucesso!</b></h2>");
+		
+		//System.out.println("Dados salvos! Post");
 	}
 	
 	@Override
